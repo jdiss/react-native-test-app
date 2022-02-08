@@ -11,7 +11,7 @@ const DEVICE_ID = "T-800";
  * @param  {...any} args The command to run and its arguments
  */
 function run(successString, ...args) {
-  const { stderr } = spawnSync("yarn", args, { encoding: "utf-8" });
+  const { stderr } = spawnSync("npm", ["run", ...args], { encoding: "utf-8" });
   if (!stderr.includes(successString)) {
     throw new Error(stderr);
   }

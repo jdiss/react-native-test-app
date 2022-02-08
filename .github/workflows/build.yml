@@ -20,7 +20,7 @@ jobs:
       - name: Set up toolchain
         uses: ./.github/actions/setup-toolchain
       - name: Install npm dependencies
-        uses: ./.github/actions/yarn
+        uses: ./.github/actions/npm
       - name: Lint commit message
         run: |
           npm run lint:commit
@@ -42,9 +42,9 @@ jobs:
           platform: node
       - name: Deduplicate packages
         run: |
-          yarn dedupe --check
+          npm find-dupes --no-audit --no-fund
       - name: Install npm dependencies
-        uses: ./.github/actions/yarn
+        uses: ./.github/actions/npm
       - name: Validate generated files
         if: ${{ github.event_name == 'pull_request' }}
         env:
@@ -92,7 +92,6 @@ jobs:
           echo "::add-matcher::.github/eslint-stylish.json"
           npm run lint:js
           echo "::remove-matcher owner=eslint-stylish::"
-          npx tsc
           npm run test:js -- --ci
       - name: ktlint
         if: ${{ matrix.platform == 'macos' }}
@@ -133,11 +132,11 @@ jobs:
           # https://github.com/facebook/react-native/issues/30036 and
           # https://github.com/microsoft/react-native-macos/issues/620 for more
           # details.
-          yarn
+          npm install
           npm run set-react-version -- main
           rm example/ios/Podfile.lock
       - name: Install npm dependencies
-        uses: ./.github/actions/yarn
+        uses: ./.github/actions/npm
         with:
           immutable: ${{ github.event_name != 'schedule' }}
       - name: Bundle JavaScript
@@ -223,11 +222,11 @@ jobs:
       - name: Set up react-native@nightly
         if: ${{ github.event_name == 'schedule' }}
         run: |
-          yarn
+          npm install
           npm run set-react-version -- nightly
         shell: bash
       - name: Install npm dependencies
-        uses: ./.github/actions/yarn
+        uses: ./.github/actions/npm
         with:
           immutable: ${{ github.event_name != 'schedule' }}
       - name: Test `react-native config`
@@ -293,11 +292,11 @@ jobs:
       - name: Set up react-native@canary
         if: ${{ github.event_name == 'schedule' }}
         run: |
-          yarn
+          npm install
           npm run set-react-version -- canary-macos
           rm example/macos/Podfile.lock
       - name: Install npm dependencies
-        uses: ./.github/actions/yarn
+        uses: ./.github/actions/npm
         with:
           immutable: ${{ github.event_name != 'schedule' }}
       - name: Bundle JavaScript
@@ -385,11 +384,11 @@ jobs:
       - name: Set up react-native@canary
         if: ${{ github.event_name == 'schedule' }}
         run: |
-          yarn
+          npm install
           npm run set-react-version -- canary-windows
         shell: bash
       - name: Install npm dependencies
-        uses: ./.github/actions/yarn
+        uses: ./.github/actions/npm
         with:
           immutable: ${{ github.event_name != 'schedule' }}
       - name: Build bundle and create solution
@@ -476,7 +475,7 @@ jobs:
       - name: Set up toolchain
         uses: ./.github/actions/setup-toolchain
       - name: Install npm dependencies
-        uses: ./.github/actions/yarn
+        uses: ./.github/actions/npm
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

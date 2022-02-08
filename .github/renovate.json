@@ -38,7 +38,7 @@
       "allowedVersions": "^0.66.0"
     }
   ],
-  "postUpdateOptions": ["yarnDedupeHighest"],
+  "postUpdateOptions": ["npmDedupe"],
   "rangeStrategy": "update-lockfile",
   "stabilityDays": 7,
   "timezone": "Europe/Oslo"

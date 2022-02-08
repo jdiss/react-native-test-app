@@ -34,7 +34,7 @@ Following this is necessary to pass CI.
 
 - Node LTS (see [releases](https://nodejs.org/en/about/releases/) for specific
   versions)
-- [Yarn Classic](https://classic.yarnpkg.com/)
+- [npm 8+](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - **macOS:** [Homebrew](https://brew.sh/)
 
 ## Building the Example App
@@ -53,10 +53,10 @@ cd react-native-test-app
 The first thing we have to do is to install the npm dependencies:
 
 ```sh
-yarn
+npm i
 ```
 
-Once Yarn is done installing dependencies, we need to navigate to the `example`
+Once npm is done installing dependencies, we need to navigate to the `example`
 folder:
 
 ```sh
@@ -71,7 +71,7 @@ for further instructions.
 To start the Android app, run:
 
 ```sh
-yarn android
+npm run android
 ```
 
 Alternatively, you can also run the app within Android Studio by pointing it to
@@ -89,7 +89,7 @@ This command is also responsible for generating the Xcode project. To start the
 iOS app, run:
 
 ```sh
-yarn ios
+npm run ios
 ```
 
 Alternatively, you can also run the app within Xcode by opening the Xcode
@@ -116,7 +116,7 @@ This command is also responsible for generating the Xcode project. To start the
 macOS app, run:
 
 ```sh
-yarn macos
+npm run macos
 ```
 
 Alternatively, you can also run the app within Xcode by opening the Xcode
@@ -141,7 +141,7 @@ npx install-windows-test-app --use-nuget
 To start the Windows app, run:
 
 ```sh
-yarn windows
+npm run windows
 ```
 
 Alternatively, you can also run the app within Visual Studio by opening the
@@ -164,16 +164,16 @@ If you choose to use Visual Studio, remember to first set the target platform to
 `set-react-version` to set the version, e.g. to use 0.64:
 
 ```sh
-yarn set-react-version 0.64
+npm run set-react-version 0.64
 ```
 
 This will modify both `package.json` and `example/package.json` to use packages
 that are compatible with specified React Native version.
 
 To avoid issues, remember to clear out `node_modules` folders before you run
-`yarn`:
+`npm i`:
 
 ```sh
-yarn clean
-yarn
+npm run clean
+npm i
 ```

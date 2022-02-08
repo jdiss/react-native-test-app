@@ -28,8 +28,8 @@ Install `react-native-test-app` as a dev dependency. We will use the wizard to
 generate your test app:
 
 ```sh
-yarn add react-native-test-app --dev
-yarn init-test-app
+npm add --save-dev react-native-test-app
+npx init-test-app
 ```
 
 In this example, we will create a project named "sample" in `sample` with test
@@ -50,11 +50,11 @@ Instructions:
 ✔ Where should we create the new project?? … sample
 ```
 
-Run `yarn` inside the new project folder:
+Install npm dependencies inside the new project folder:
 
 ```sh
 cd sample
-yarn
+npm install
 ```
 
 Once the dependencies are installed, follow the platform specific instructions
@@ -65,7 +65,7 @@ below.
 Bundle the JS code and assets by running:
 
 ```sh
-yarn build:android
+npm run build:android
 ```
 
 If you're going to use the development server, you can skip this step.
@@ -73,7 +73,7 @@ If you're going to use the development server, you can skip this step.
 To start the Android app, run:
 
 ```sh
-yarn android
+npm run android
 ```
 
 Alternatively, you can also run the app within Android Studio by pointing it to
@@ -84,7 +84,7 @@ the `android` folder.
 Bundle the JS code and assets by running:
 
 ```sh
-yarn build:ios
+npm run build:ios
 ```
 
 If you're going to use the development server, you can skip this step.
@@ -99,7 +99,7 @@ This command is also responsible for generating the Xcode project. To start the
 iOS app, run:
 
 ```sh
-yarn ios
+npm run ios
 ```
 
 Alternatively, you can also run the app within Xcode by opening the Xcode
@@ -118,7 +118,7 @@ open ios/Sample.xcworkspace
 Bundle the JS code and assets by running:
 
 ```sh
-yarn build:ios
+npm run build:ios
 ```
 
 If you're going to use the development server, you can skip this step.
@@ -134,7 +134,7 @@ This command is also responsible for generating the Xcode project. To start the
 macOS app, run:
 
 ```sh
-yarn macos
+npm run macos
 ```
 
 Alternatively, you can also run the app within Xcode by opening the Xcode
@@ -153,7 +153,7 @@ open macos/Sample.xcworkspace
 Bundle the JS code and assets by running:
 
 ```sh
-yarn build:ios
+npm run build:ios
 ```
 
 Before you can run the Windows app, you must first generate it:
@@ -165,7 +165,7 @@ npx install-windows-test-app --use-nuget
 To start the Windows app, run:
 
 ```sh
-yarn windows
+npm run windows
 ```
 
 Alternatively, you can also run the app within Visual Studio by opening the

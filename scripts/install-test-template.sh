@@ -34,18 +34,11 @@ done
 # Use tarballs to ensure that published packages are consumable
 npm pack
 
-yarn
+npm install
 npx react-native init-test-app --destination template-example --name TemplateExample --platform "$platform"
+cp .npmrc package-lock.json template-example
 
 pushd template-example 1> /dev/null
-
-{
-  echo 'enableScripts: false'
-  echo 'enableTelemetry: false'
-  echo 'nodeLinker: node-modules'
-  echo 'npmRegistryServer: "https://registry.npmjs.org"'
-  echo 'yarnPath: ../.yarn/releases/yarn-3.1.1.cjs'
-} >> .yarnrc.yml
 
 script="s/\"react-native-test-app\": \".*\"/\"react-native-test-app\": \"..\/react-native-test-app-$version.tgz\"/"
 if sed --version &> /dev/null; then
@@ -54,7 +47,6 @@ else
   sed -i '' "$script" package.json
 fi
 
-touch yarn.lock
 if $install; then
-  yarn --no-immutable
+  npm install
 fi

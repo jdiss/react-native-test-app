@@ -2,6 +2,7 @@
 // istanbul ignore file
 
 const { spawnSync } = require("child_process");
+const { existsSync: fileExists } = require("fs");
 const fs = require("fs/promises");
 const os = require("os");
 const path = require("path");
@@ -46,12 +47,26 @@ async function makeProject(name, platforms, setupFiles = {}) {
 
   await writeAllFiles(files, packagePath);
 
-  try {
-    await fs.symlink(
-      path.resolve(__dirname, "..", "..", "example", "node_modules"),
+  const projectRoot = path.resolve(__dirname, "..", "..");
+  const tasks = [
+    fs.symlink(
+      path.resolve(projectRoot, "node_modules"),
       path.join(packagePath, "node_modules"),
       "dir"
-    );
+    ),
+  ];
+
+  const project = path.join(
+    projectRoot,
+    "node_modules",
+    "react-native-test-app"
+  );
+  if (!fileExists(project)) {
+    tasks.push(fs.symlink(projectRoot, project, "dir"));
+  }
+
+  try {
+    await Promise.all(tasks);
   } catch (e) {
     // @ts-ignore
     if (e.code !== "EEXIST") {

@@ -9,10 +9,10 @@
     "build:macos": "mkdirp dist && react-native bundle --entry-file index.js --platform macos --dev true --bundle-output dist/main.macos.jsbundle --assets-dest dist",
     "build:windows": "mkdirp dist && react-native bundle --entry-file index.js --platform windows --dev true --bundle-output dist/main.windows.bundle --assets-dest dist",
     "ci:windows": "react-native run-windows --logging --no-packager --no-launch --no-deploy",
-    "clean": "yarn workspace react-native-test-app clean",
+    "clean": "npm run --prefix=.. clean",
     "ios": "react-native run-ios",
     "macos": "react-native run-macos --scheme Example",
-    "set-react-version": "yarn workspace react-native-test-app set-react-version",
+    "set-react-version": "npm run --prefix=.. set-react-version",
     "start": "react-native start",
     "windows": "react-native run-windows --no-packager"
   },
@@ -31,7 +31,7 @@
     "react": "17.0.2",
     "react-native": "^0.66.4",
     "react-native-macos": "^0.66.14",
-    "react-native-test-app": "workspace:.",
+    "react-native-test-app": "file:..",
     "react-native-windows": "^0.66.11"
   },
   "jest": {
