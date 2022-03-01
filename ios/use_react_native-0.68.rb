@@ -3,7 +3,6 @@ require 'open3'
 require_relative('pod_helpers')
 
 def include_react_native!(options)
-  fabric_enabled = options[:fabric_enabled]
   react_native = options[:path]
   flipper_versions = options[:rta_flipper_versions]
   project_root = options[:rta_project_root]
@@ -11,12 +10,23 @@ def include_react_native!(options)
 
   require_relative(File.join(project_root, react_native, 'scripts', 'react_native_pods'))
 
-  if fabric_enabled
+  if options[:fabric_enabled]
     Pod::UI.warn(
       'As of writing, Fabric is still experimental and subject to change. ' \
       'For more information, please see ' \
       'https://reactnative.dev/docs/next/new-architecture-app-renderer-ios.'
     )
+    ENV['RCT_NEW_ARCH_ENABLED'] = '1'
+  end
+  if options[:turbomodule_enabled]
+    Pod::UI.warn(
+      'As of writing, TurboModule is still experimental and subject to change. ' \
+      'For more information, please see ' \
+      'https://reactnative.dev/docs/next/new-architecture-app-modules-ios.'
+    )
+    # At the moment, Fabric and TurboModule code are intertwined. We need to
+    # enable Fabric for some code that TurboModule relies on.
+    options[:fabric_enabled] = true
     ENV['RCT_NEW_ARCH_ENABLED'] = '1'
   end
 

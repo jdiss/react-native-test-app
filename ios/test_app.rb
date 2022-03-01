@@ -237,6 +237,7 @@ def make_project!(xcodeproj, project_root, target_platform, options)
 
   supports_flipper = target_platform == :ios && flipper_enabled?
   use_fabric = options[:fabric_enabled] && version >= 6800
+  use_turbomodule = options[:turbomodule_enabled] && version >= 6800
 
   app_project = Xcodeproj::Project.open(xcodeproj_dst)
   app_project.native_targets.each do |target|
@@ -252,6 +253,11 @@ def make_project!(xcodeproj, project_root, target_platform, options)
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'FB_SONARKIT_ENABLED=1'
         config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'USE_FLIPPER=1'
       end
+      if use_turbomodule
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'FOLLY_NO_CONFIG=1'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'RCT_NEW_ARCH_ENABLED=1'
+        config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'USE_TURBOMODULE=1'
+      end
 
       build_settings.each do |setting, value|
         config.build_settings[setting] = value
@@ -263,6 +269,7 @@ def make_project!(xcodeproj, project_root, target_platform, options)
         config.build_settings['OTHER_SWIFT_FLAGS'] << '-DFB_SONARKIT_ENABLED'
         config.build_settings['OTHER_SWIFT_FLAGS'] << '-DUSE_FLIPPER'
       end
+      config.build_settings['OTHER_SWIFT_FLAGS'] << '-DUSE_TURBOMODULE' if use_turbomodule
       if single_app.is_a? String
         config.build_settings['OTHER_SWIFT_FLAGS'] << '-DENABLE_SINGLE_APP_MODE'
       end

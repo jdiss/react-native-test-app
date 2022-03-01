@@ -79,8 +79,8 @@ Object {
     }
 
     dependencies {
-        classpath \\"com.android.tools.build:gradle:$androidPluginVersion\\"
-        classpath \\"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion\\"
+        classpath(\\"com.android.tools.build:gradle:\${androidPluginVersion}\\")
+        classpath(\\"de.undercouch:gradle-download-task:5.1.0\\")
     }
 }
 
@@ -376,8 +376,8 @@ Object {
     }
 
     dependencies {
-        classpath \\"com.android.tools.build:gradle:$androidPluginVersion\\"
-        classpath \\"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion\\"
+        classpath(\\"com.android.tools.build:gradle:\${androidPluginVersion}\\")
+        classpath(\\"de.undercouch:gradle-download-task:5.1.0\\")
     }
 }
 
@@ -522,8 +522,8 @@ Object {
     }
 
     dependencies {
-        classpath \\"com.android.tools.build:gradle:$androidPluginVersion\\"
-        classpath \\"org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion\\"
+        classpath(\\"com.android.tools.build:gradle:\${androidPluginVersion}\\")
+        classpath(\\"de.undercouch:gradle-download-task:5.1.0\\")
     }
 }
 

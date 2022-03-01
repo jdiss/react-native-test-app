@@ -16,8 +16,8 @@ describe("test-app-util", () => {
     "    }",
     "",
     "    dependencies {",
-    '        classpath "com.android.tools.build:gradle:$androidPluginVersion"',
-    '        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"',
+    '        classpath("com.android.tools.build:gradle:${androidPluginVersion}")',
+    '        classpath("de.undercouch:gradle-download-task:5.1.0")',
     "    }",
     "}",
     "",
@@ -39,7 +39,7 @@ describe("test-app-util", () => {
    * @returns
    */
   function toVersionNumber(version) {
-    const [major, minor, patch] = version.split(".");
+    const [major, minor, patch] = version.split("-")[0].split(".");
     return Number(major) * 10000 + Number(minor) * 100 + Number(patch);
   }
 

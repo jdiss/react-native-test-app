@@ -191,8 +191,15 @@ ext.getSingleAppMode = {
     return false
 }
 
-ext.isFabricEnabled = { baseDir ->
-    return project.hasProperty("USE_FABRIC") &&
-        project.getProperty("USE_FABRIC") == "1" &&
-        getReactNativeVersionNumber(baseDir) >= 6800
+ext.isFabricEnabled = { project ->
+    return isTurboModuleEnabled(project) ||
+        (project.hasProperty("USE_FABRIC") &&
+            project.getProperty("USE_FABRIC") == "1" &&
+            getReactNativeVersionNumber(project.rootDir) >= 6800)
+}
+
+ext.isTurboModuleEnabled = { project ->
+    return project.hasProperty("USE_TURBOMODULE") &&
+        project.getProperty("USE_TURBOMODULE") == "1" &&
+        getReactNativeVersionNumber(project.rootDir) >= 6800
 }
